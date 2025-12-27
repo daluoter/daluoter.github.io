@@ -1,0 +1,13 @@
+name = "Techfolio"
+license = "MIT"
+licenselink = "https://github.com/daluoter/daluoter.github.io/blob/main/LICENSE"
+description = "A deep blue tech-themed Hugo blog theme"
+
+[author]
+  name = "daluoter"
+  homepage = "https://daluoter.github.io"
+
+[original]
+  name = "Custom Theme"
+  homepage = ""
+  repo = ""

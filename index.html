@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人作品集 | Personal Portfolio</title>
+    <meta name="description" content="個人作品集 - 開發者、設計師、技術愛好者">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Saira:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo" data-i18n="nav.logo">作品集</div>
+        <ul class="nav-links">
+            <li><a href="#hero" data-i18n="nav.home">首頁</a></li>
+            <li><a href="#about" data-i18n="nav.about">關於我</a></li>
+            <li><a href="#experience" data-i18n="nav.experience">經歷</a></li>
+            <li><a href="#projects" data-i18n="nav.projects">作品</a></li>
+            <li><a href="#skills" data-i18n="nav.skills">技能</a></li>
+            <li><a href="#blog" data-i18n="nav.blog">文章</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">聯絡</a></li>
+        </ul>
+        <!-- Language Dropdown -->
+        <div class="lang-dropdown">
+            <span class="lang-icon">🌐</span>
+            <select id="langSelect" aria-label="Select Language">
+                <option value="zh">繁體中文</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h2 class="greeting" data-i18n="hero.greeting">你好，我是</h2>
+            <h1 class="name">Your Name</h1>
+            <h3 class="title" data-i18n="hero.title">網頁開發者 & 技術愛好者</h3>
+            <p class="tagline" data-i18n="hero.tagline">以程式碼構建未來，一行一行創造可能。</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" data-i18n="hero.resumeBtn">下載履歷</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="hero.contactBtn">聯絡我</a>
+            </div>
+        </div>
+        <!-- Particle Canvas Background -->
+        <canvas id="particleCanvas"></canvas>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title" data-i18n="about.title">01. 關於我</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p data-i18n="about.p1">這是一個關於我的簡介段落。我是誰、我擅長什麼、我正在尋找什麼樣的機會。</p>
+                <p data-i18n="about.p2">我熱愛探索新技術，並致力於打造高效能、高互動性的網頁應用。</p>
+            </div>
+            <div class="about-image">
+                <div class="img-wrapper">
+                    <img src="https://via.placeholder.com/300" alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <h2 class="section-title" data-i18n="experience.title">02. 工作經歷</h2>
+        <div class="timeline">
+            <!-- Experience Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="job-title" data-i18n="experience.job1.title">資深開發者</h3>
+                    <h4 class="company" data-i18n="experience.job1.company">科技公司 A</h4>
+                    <span class="date" data-i18n="experience.job1.date">2023 - 現在</span>
+                    <ul class="achievements">
+                        <li data-i18n="experience.job1.a1">帶領前端團隊重構核心產品，效能提升 30%。</li>
+                        <li data-i18n="experience.job1.a2">引入 CI/CD 流程，部署時間縮短 50%。</li>
+                        <li data-i18n="experience.job1.a3">指導初階工程師，提升團隊整體代碼品質。</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Experience Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="job-title" data-i18n="experience.job2.title">網頁開發者</h3>
+                    <h4 class="company" data-i18n="experience.job2.company">創意公司 B</h4>
+                    <span class="date" data-i18n="experience.job2.date">2021 - 2023</span>
+                    <ul class="achievements">
+                        <li data-i18n="experience.job2.a1">開發超過 10 個響應式網站，客戶滿意度 100%。</li>
+                        <li data-i18n="experience.job2.a2">優化 SEO 策略，有機流量增長 20%。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <h2 class="section-title" data-i18n="education.title">03. 學歷</h2>
+        <div class="education-grid">
+            <div class="edu-card">
+                <h3 data-i18n="education.school1.name">某某大學</h3>
+                <p data-i18n="education.school1.degree">資訊工程碩士</p>
+                <span class="year">2019 - 2021</span>
+            </div>
+            <div class="edu-card">
+                <h3 data-i18n="education.school2.name">某某大學</h3>
+                <p data-i18n="education.school2.degree">軟體工程學士</p>
+                <span class="year">2015 - 2019</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title" data-i18n="projects.title">04. 作品集</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-media">
+                    <!-- Placeholder for Image or Video -->
+                    <div class="media-placeholder" data-i18n="projects.mediaPlaceholder">預覽媒體</div>
+                </div>
+                <div class="project-info">
+                    <h3 data-i18n="projects.project1.name">專案名稱 A</h3>
+                    <p class="project-desc" data-i18n="projects.project1.desc">一句話介紹這個專案解決了什麼問題。</p>
+                    <div class="tech-stack">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-media">
+                    <div class="media-placeholder" data-i18n="projects.mediaPlaceholder">預覽媒體</div>
+                </div>
+                <div class="project-info">
+                    <h3 data-i18n="projects.project2.name">專案名稱 B</h3>
+                    <p class="project-desc" data-i18n="projects.project2.desc">一句話介紹這個專案的功能。</p>
+                    <div class="tech-stack">
+                        <span>Vue</span>
+                        <span>Firebase</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section-title" data-i18n="skills.title">05. 技能</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3 data-i18n="skills.languages">程式語言</h3>
+                <div class="skill-list">
+                    <span class="skill-pill">JavaScript (ES6+)</span>
+                    <span class="skill-pill">TypeScript</span>
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">HTML5/CSS3</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3 data-i18n="skills.frameworks">框架與工具</h3>
+                <div class="skill-list">
+                    <span class="skill-pill">React</span>
+                    <span class="skill-pill">Next.js</span>
+                    <span class="skill-pill">Tailwind CSS</span>
+                    <span class="skill-pill">Git</span>
+                    <span class="skill-pill">Docker</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <h2 class="section-title" data-i18n="blog.title">06. 技術文章</h2>
+        <p class="section-intro" data-i18n="blog.intro">分享技術心得、學習筆記與開發經驗。</p>
+
+        <div class="blog-preview">
+            <!-- Blog posts will be dynamically loaded or manually updated -->
+            <article class="blog-card">
+                <div class="blog-card-meta">
+                    <time>2024-12-27</time>
+                    <span class="blog-card-category">技術</span>
+                </div>
+                <h3 class="blog-card-title">
+                    <a href="blog/posts/hello-world/" data-i18n="blog.post1.title">Hello World - 我的第一篇文章</a>
+                </h3>
+                <p class="blog-card-excerpt" data-i18n="blog.post1.excerpt">歡迎來到我的技術 Blog！這是第一篇測試文章。</p>
+                <a href="blog/posts/hello-world/" class="blog-card-link" data-i18n="blog.readMore">閱讀更多 →</a>
+            </article>
+
+            <!-- Placeholder for more posts -->
+            <article class="blog-card blog-card-placeholder">
+                <div class="blog-card-content">
+                    <span class="placeholder-icon">📝</span>
+                    <p data-i18n="blog.moreComing">更多文章即將推出...</p>
+                </div>
+            </article>
+        </div>
+
+        <div class="blog-cta">
+            <a href="blog/" class="btn btn-secondary" data-i18n="blog.viewAll">查看所有文章 →</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title" data-i18n="contact.title">07. 聯絡我</h2>
+        <p class="contact-intro" data-i18n="contact.intro">我目前正在尋找新的機會。無論您有任何問題或只是想打聲招呼，我都會盡快回覆您！</p>
+
+        <div class="contact-wrapper">
+            <!-- Social Links - Horizontal Row -->
+            <div class="contact-block">
+                <h3 class="contact-subtitle" data-i18n="contact.findMe">找到我</h3>
+                <div class="social-links-row">
+                    <a href="mailto:email@example.com" class="social-card">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="#" class="social-card">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#" class="social-card">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-divider">
+                <span data-i18n="contact.or">或</span>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-block">
+                <h3 class="contact-subtitle" data-i18n="contact.sendMessage">傳送訊息</h3>
+                <form class="contact-form-centered" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" data-i18n-placeholder="contact.form.name" placeholder="姓名"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" data-i18n-placeholder="contact.form.email" placeholder="電子郵件"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" data-i18n-placeholder="contact.form.message" placeholder="訊息"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">發送訊息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-i18n="footer.credit">由 Your Name 設計與開發</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/particles.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

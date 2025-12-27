@@ -1,0 +1,455 @@
+/* =========================================
+   Techfolio Hugo Theme - Deep Blue Tech Style
+   Matching the main portfolio site
+   ========================================= */
+
+/* Variables */
+:root {
+    --bg-main: #020c1b;
+    --bg-secondary: #0a192f;
+    --bg-card: rgba(17, 34, 64, 0.7);
+
+    --text-primary: #e6f1ff;
+    --text-secondary: #8892b0;
+    --text-accent: #64ffda;
+    --neon-blue: #00f3ff;
+    --neon-purple: #bc13fe;
+
+    --font-heading: 'Saira', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+
+    --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    --nav-height: 80px;
+}
+
+/* Base Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--text-accent);
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: rgba(2, 12, 27, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--neon-blue);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--neon-blue);
+}
+
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - var(--nav-height));
+    padding: calc(var(--nav-height) + 60px) 10% 60px;
+}
+
+/* Blog Header */
+.blog-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+/* Posts Grid */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Post Card */
+.post-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 30px;
+    transition: var(--transition);
+}
+
+.post-card:hover {
+    border-color: var(--neon-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.post-category {
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--neon-blue);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.post-title {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.post-title a {
+    color: var(--text-primary);
+}
+
+.post-title a:hover {
+    color: var(--neon-blue);
+}
+
+.post-excerpt {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--text-accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.read-more {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--neon-blue);
+    display: inline-block;
+}
+
+.read-more:hover {
+    transform: translateX(5px);
+}
+
+/* Single Post */
+.single-post {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-header {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.post-header .post-title {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.post-description {
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.post-header .post-tags {
+    justify-content: center;
+}
+
+/* Post Content */
+.post-content {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.post-content h2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--text-primary);
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.post-content h3 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--text-primary);
+    margin: 30px 0 15px;
+}
+
+.post-content p {
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+}
+
+.post-content ul,
+.post-content ol {
+    margin: 20px 0;
+    padding-left: 30px;
+    color: var(--text-secondary);
+}
+
+.post-content li {
+    margin-bottom: 10px;
+}
+
+.post-content strong {
+    color: var(--text-primary);
+}
+
+.post-content code {
+    background: rgba(0, 243, 255, 0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--neon-blue);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.post-content pre {
+    background: rgba(10, 25, 47, 0.95);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-left: 3px solid var(--neon-blue);
+    border-radius: 8px;
+    padding: 25px;
+    overflow-x: auto;
+    margin: 25px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.post-content pre code {
+    background: none;
+    padding: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Hugo syntax highlighting override */
+.highlight {
+    background: rgba(10, 25, 47, 0.95) !important;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-left: 3px solid var(--neon-blue);
+    border-radius: 8px;
+    margin: 25px 0;
+    overflow: hidden;
+}
+
+.highlight pre {
+    background: transparent !important;
+    border: none;
+    margin: 0;
+    padding: 20px;
+}
+
+.highlight .ln {
+    color: rgba(136, 146, 176, 0.5);
+    margin-right: 15px;
+    user-select: none;
+}
+
+/* Syntax colors - matching theme */
+.highlight .kd,
+.highlight .k {
+    color: var(--neon-blue);
+}
+
+/* keywords */
+.highlight .s,
+.highlight .s1,
+.highlight .s2 {
+    color: var(--text-accent);
+}
+
+/* strings */
+.highlight .c,
+.highlight .c1 {
+    color: rgba(136, 146, 176, 0.7);
+    font-style: italic;
+}
+
+/* comments */
+.highlight .nf,
+.highlight .nx {
+    color: #82aaff;
+}
+
+/* functions */
+.highlight .mi,
+.highlight .mf {
+    color: #f78c6c;
+}
+
+/* numbers */
+
+.post-content blockquote {
+    border-left: 3px solid var(--neon-blue);
+    padding-left: 20px;
+    margin: 25px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.post-content hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 40px 0;
+}
+
+/* Post Footer */
+.post-footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-link {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.back-link:hover {
+    color: var(--neon-blue);
+}
+
+/* Footer */
+footer {
+    padding: 30px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.pagination a,
+.pagination span {
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+
+.pagination a:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+}
+
+.pagination .active {
+    background: var(--neon-blue);
+    color: var(--bg-main);
+    border-color: var(--neon-blue);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        padding: calc(var(--nav-height) + 40px) 5% 40px;
+    }
+
+    .page-title {
+        font-size: 32px;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .post-header .post-title {
+        font-size: 28px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}

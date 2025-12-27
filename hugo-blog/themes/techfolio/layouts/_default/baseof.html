@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Saira:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
+
+    <!-- Syntax Highlighting -->
+    {{ template "_internal/opengraph.html" . }}
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="{{ .Site.BaseURL }}../" class="logo">{{ if eq .Site.Language.Lang "zh" }}作品集{{ else }}PORTFOLIO{{ end
+            }}</a>
+        <ul class="nav-links">
+            <li><a href="{{ .Site.BaseURL }}../">{{ if eq .Site.Language.Lang "zh" }}首頁{{ else }}Home{{ end }}</a></li>
+            <li><a href="{{ .Site.BaseURL }}" class="active">Blog</a></li>
+            <li><a href="{{ .Site.BaseURL }}../#projects">{{ if eq .Site.Language.Lang "zh" }}作品{{ else }}Projects{{ end
+                    }}</a></li>
+            <li><a href="{{ .Site.BaseURL }}../#contact">{{ if eq .Site.Language.Lang "zh" }}聯絡{{ else }}Contact{{ end
+                    }}</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>{{ if eq .Site.Language.Lang "zh" }}由 {{ .Site.Params.author }} 設計與開發{{ else }}Designed & Built by {{
+            .Site.Params.author }}{{ end }}</p>
+    </footer>
+</body>
+
+</html>
