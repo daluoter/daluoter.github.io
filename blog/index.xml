@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Blog | 個人作品集</title>
-    <link>http://localhost:1313/blog/</link>
-    <description>Recent content on Blog | 個人作品集</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <lastBuildDate>Fri, 27 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Hello World - 我的第一篇文章</title>
-      <link>http://localhost:1313/blog/posts/hello-world/</link>
-      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/posts/hello-world/</guid>
-      <description>歡迎！ 這是我使用 Hugo 建立的第一篇 Blog 文章。&#xA;為什麼選擇 Hugo？ 速度快：靜態網站生成，載入速度極快 易於維護：使用 Markdown 寫作 可自訂性高：可以打造完全符合個人風格的主題 程式碼範例 1 2 // Hello World in JavaScript console.log(&amp;#39;Hello, World!&amp;#39;); 下一步計畫 持續分享技術文章 同步發布到 Medium 記錄學習筆記 感謝閱讀！</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog | 個人作品集</title><link>https://daluoter.github.io/blog/</link><description>Recent content on Blog | 個人作品集</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 27 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://daluoter.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World - 我的第一篇文章</title><link>https://daluoter.github.io/blog/posts/hello-world/</link><pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate><guid>https://daluoter.github.io/blog/posts/hello-world/</guid><description>歡迎！ 這是我使用 Hugo 建立的第一篇 Blog 文章。
+為什麼選擇 Hugo？ 速度快：靜態網站生成，載入速度極快 易於維護：使用 Markdown 寫作 可自訂性高：可以打造完全符合個人風格的主題 程式碼範例 1 2 // Hello World in JavaScript console.log(&amp;#39;Hello, World!&amp;#39;); 下一步計畫 持續分享技術文章 同步發布到 Medium 記錄學習筆記 感謝閱讀！</description></item></channel></rss>
