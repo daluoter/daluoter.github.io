@@ -1,2 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Blog | 個人作品集</title><link>https://daluoter.github.io/blog/posts/</link><description>Recent content in Posts on Blog | 個人作品集</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 27 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://daluoter.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World - 我的第一篇文章</title><link>https://daluoter.github.io/blog/posts/hello-world/</link><pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate><guid>https://daluoter.github.io/blog/posts/hello-world/</guid><description>歡迎！ 這是我使用 Hugo 建立的第一篇 Blog 文章。
-為什麼選擇 Hugo？ 速度快：靜態網站生成，載入速度極快 易於維護：使用 Markdown 寫作 可自訂性高：可以打造完全符合個人風格的主題 程式碼範例 1 2 // Hello World in JavaScript console.log(&amp;#39;Hello, World!&amp;#39;); 下一步計畫 持續分享技術文章 同步發布到 Medium 記錄學習筆記 感謝閱讀！</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Blog | 個人作品集</title><link>https://daluoter.github.io/blog/posts/</link><description>Recent content in Posts on Blog | 個人作品集</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Fri, 27 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://daluoter.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World - 我的第一篇文章</title><link>https://daluoter.github.io/blog/posts/hello-world/</link><pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate><guid>https://daluoter.github.io/blog/posts/hello-world/</guid><description>&lt;h2 id="歡迎"&gt;歡迎！&lt;/h2&gt;
+&lt;p&gt;這是我使用 Hugo 建立的第一篇 Blog 文章。&lt;/p&gt;
+&lt;h3 id="為什麼選擇-hugo"&gt;為什麼選擇 Hugo？&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;速度快&lt;/strong&gt;：靜態網站生成，載入速度極快&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;易於維護&lt;/strong&gt;：使用 Markdown 寫作&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可自訂性高&lt;/strong&gt;：可以打造完全符合個人風格的主題&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="程式碼範例"&gt;程式碼範例&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;"&gt;&lt;tr&gt;&lt;td style="vertical-align:top;padding:0;margin:0;border:0;"&gt;
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1
+&lt;/span&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%"&gt;
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#6272a4"&gt;// Hello World in JavaScript
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;console.log(&lt;span style="color:#f1fa8c"&gt;&amp;#39;Hello, World!&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="下一步計畫"&gt;下一步計畫&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;持續分享技術文章&lt;/li&gt;
+&lt;li&gt;同步發布到 Medium&lt;/li&gt;
+&lt;li&gt;記錄學習筆記&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;感謝閱讀！&lt;/p&gt;</description></item></channel></rss>
