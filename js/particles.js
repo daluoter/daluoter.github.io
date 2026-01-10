@@ -1,4 +1,5 @@
 // particles.js - Animated particle background for Hero section
+// Respects user's reduced motion preferences for accessibility
 
 class ParticleNetwork {
     constructor(canvas) {
@@ -8,6 +9,8 @@ class ParticleNetwork {
         this.particleCount = 80;
         this.maxDistance = 150;
         this.mouse = { x: null, y: null, radius: 150 };
+        this.isRunning = true;
+        this.animationId = null;
 
         this.init();
         this.animate();
@@ -105,15 +108,29 @@ class ParticleNetwork {
     }
 
     animate() {
+        if (!this.isRunning) return;
+        
         this.updateParticles();
         this.drawParticles();
-        requestAnimationFrame(() => this.animate());
+        this.animationId = requestAnimationFrame(() => this.animate());
+    }
+
+    stop() {
+        this.isRunning = false;
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+        }
     }
 
     addEventListeners() {
+        // Debounced resize handler
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            this.resize();
-            this.createParticles();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.resize();
+                this.createParticles();
+            }, 150);
         });
 
         this.canvas.parentElement.addEventListener('mousemove', (e) => {
@@ -126,13 +143,30 @@ class ParticleNetwork {
             this.mouse.x = null;
             this.mouse.y = null;
         });
+
+        // Stop animation when page is not visible (performance)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.stop();
+            } else {
+                this.isRunning = true;
+                this.animate();
+            }
+        });
     }
 }
 
-// Initialize when DOM is ready
+// Initialize when DOM is ready - with reduced motion check
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('particleCanvas');
-    if (canvas) {
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (canvas && !prefersReducedMotion) {
         new ParticleNetwork(canvas);
+    } else if (canvas && prefersReducedMotion) {
+        // Hide canvas for users who prefer reduced motion
+        canvas.style.display = 'none';
     }
 });

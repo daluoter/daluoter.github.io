@@ -25,7 +25,7 @@ const translations = {
             p2: "我熱愛探索新技術，並致力於打造高效能、高互動性的網頁應用。"
         },
         experience: {
-            title: "02. 工作經歷",
+            title: "01. 工作經歷",
             job1: {
                 title: "資深開發者",
                 company: "科技公司 A",
@@ -43,7 +43,7 @@ const translations = {
             }
         },
         education: {
-            title: "03. 學歷",
+            title: "02. 學歷",
             school1: {
                 name: "某某大學",
                 degree: "資訊工程碩士"
@@ -51,6 +51,17 @@ const translations = {
             school2: {
                 name: "某某大學",
                 degree: "軟體工程學士"
+            }
+        },
+        certifications: {
+            title: "03. 證照",
+            cert1: {
+                name: "AWS Solutions Architect Associate",
+                issuer: "Amazon Web Services"
+            },
+            cert2: {
+                name: "AWS Developer Associate",
+                issuer: "Amazon Web Services"
             }
         },
         projects: {
@@ -68,7 +79,10 @@ const translations = {
         skills: {
             title: "05. 技能",
             languages: "程式語言",
-            frameworks: "框架與工具"
+            frameworks: "框架與工具",
+            interests: "興趣",
+            interest1: "加密貨幣",
+            interest2: "傳統武術"
         },
         blog: {
             title: "06. 技術文章",
@@ -122,7 +136,7 @@ const translations = {
             p2: "I love exploring new technologies and am dedicated to building high-performance, interactive web applications."
         },
         experience: {
-            title: "02. Experience",
+            title: "01. Experience",
             job1: {
                 title: "Senior Developer",
                 company: "Tech Company A",
@@ -140,7 +154,7 @@ const translations = {
             }
         },
         education: {
-            title: "03. Education",
+            title: "02. Education",
             school1: {
                 name: "University Name",
                 degree: "Master of Computer Science"
@@ -148,6 +162,17 @@ const translations = {
             school2: {
                 name: "University Name",
                 degree: "Bachelor of Software Engineering"
+            }
+        },
+        certifications: {
+            title: "03. Certifications",
+            cert1: {
+                name: "AWS Solutions Architect Associate",
+                issuer: "Amazon Web Services"
+            },
+            cert2: {
+                name: "AWS Developer Associate",
+                issuer: "Amazon Web Services"
             }
         },
         projects: {
@@ -165,7 +190,10 @@ const translations = {
         skills: {
             title: "05. Skills",
             languages: "Languages",
-            frameworks: "Frameworks & Tools"
+            frameworks: "Frameworks & Tools",
+            interests: "Interests",
+            interest1: "Cryptocurrency",
+            interest2: "Traditional Martial Arts"
         },
         blog: {
             title: "06. Blog",
