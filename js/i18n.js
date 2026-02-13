@@ -27,19 +27,22 @@ const translations = {
         experience: {
             title: "01. 工作經歷",
             job1: {
-                title: "資深開發者",
-                company: "科技公司 A",
+                title: "DevOps 工程師",
+                company: "國家資通安全研究院 (NICS)",
                 date: "2023 - 現在",
-                a1: "帶領前端團隊重構核心產品，效能提升 30%。",
-                a2: "引入 CI/CD 流程，部署時間縮短 50%。",
-                a3: "指導初階工程師，提升團隊整體代碼品質。"
+                a1: "於 AWS 上開發雲端惡意電郵陷阱。",
+                a2: "將現有惡意電郵檢測系統遷移至 AWS。",
+                a3: "維運既有 22 間機關地端惡意電郵檢測系統。",
+                a4: "協助撰寫管理會議報告。"
             },
             job2: {
-                title: "網頁開發者",
-                company: "創意公司 B",
+                title: "系統開發工程師",
+                company: "國家資通安全會報技術服務中心 (NCCST)",
                 date: "2021 - 2023",
-                a1: "開發超過 10 個響應式網站，客戶滿意度 100%。",
-                a2: "優化 SEO 策略，有機流量增長 20%。"
+                a1: "開發新版惡意電郵檢測系統。",
+                a2: "佈署惡意電郵檢測系統至 4 間政府機關。",
+                a3: "協助分析惡意電郵來源。",
+                a4: "協助撰寫管理會議報告。"
             }
         },
         education: {
@@ -138,19 +141,22 @@ const translations = {
         experience: {
             title: "01. Experience",
             job1: {
-                title: "Senior Developer",
-                company: "Tech Company A",
+                title: "DevOps Engineer",
+                company: "National Institute of Cyber Security (NICS)",
                 date: "2023 - Present",
-                a1: "Led frontend team to refactor core product, improving performance by 30%.",
-                a2: "Introduced CI/CD pipeline, reducing deployment time by 50%.",
-                a3: "Mentored junior engineers, enhancing overall team code quality."
+                a1: "Developed cloud-based malicious email traps on AWS.",
+                a2: "Migrated existing malicious email detection systems to AWS.",
+                a3: "Maintained on-premises malicious email detection systems for 22 agencies.",
+                a4: "Assisted in drafting management meeting reports."
             },
             job2: {
-                title: "Web Developer",
-                company: "Creative Agency B",
+                title: "System Development Engineer",
+                company: "National Center for Cyber Security Technology (NCCST)",
                 date: "2021 - 2023",
-                a1: "Developed over 10 responsive websites with 100% client satisfaction.",
-                a2: "Optimized SEO strategies, increasing organic traffic by 20%."
+                a1: "Developed a new version of the malicious email detection system.",
+                a2: "Deployed the malicious email detection system to 4 government agencies.",
+                a3: "Assisted in analyzing sources of malicious emails.",
+                a4: "Assisted in drafting management meeting reports."
             }
         },
         education: {
@@ -198,8 +204,8 @@ const translations = {
         blog: {
             title: "06. Blog",
             intro: "Sharing tech insights, learning notes, and development experiences.",
-            readMore: "Read more \u2192",
-            viewAll: "View all posts \u2192",
+            readMore: "Read more →",
+            viewAll: "View all posts →",
             moreComing: "More posts coming soon...",
             post1: {
                 title: "Hello World - My First Post",
