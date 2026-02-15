@@ -48,23 +48,27 @@ const translations = {
         education: {
             title: "02. 學歷",
             school1: {
-                name: "某某大學",
-                degree: "資訊工程碩士"
+                year: "2018 - 2020",
+                name: "國立台灣科技大學",
+                degree: "電機工程學系"
             },
             school2: {
-                name: "某某大學",
-                degree: "軟體工程學士"
+                year: "2014 - 2018",
+                name: "大同大學",
+                degree: "電機工程系"
             }
         },
         certifications: {
             title: "03. 證照",
             cert1: {
+                year: "2026 - 2029",
                 name: "AWS Solutions Architect Associate",
                 issuer: "Amazon Web Services"
             },
             cert2: {
-                name: "AWS Developer Associate",
-                issuer: "Amazon Web Services"
+                year: "2022 - 2025",
+                name: "EC-Council Certified Ethical Hacker",
+                issuer: "EC-Council"
             }
         },
         projects: {
@@ -162,23 +166,27 @@ const translations = {
         education: {
             title: "02. Education",
             school1: {
-                name: "University Name",
-                degree: "Master of Computer Science"
+                year: "2018 - 2020",
+                name: "National Taiwan University of Science and Technology",
+                degree: "Department of Electrical Engineering"
             },
             school2: {
-                name: "University Name",
-                degree: "Bachelor of Software Engineering"
+                year: "2014 - 2018",
+                name: "Tatung University",
+                degree: "Department of Electrical Engineering"
             }
         },
         certifications: {
             title: "03. Certifications",
             cert1: {
+                year: "2026 - 2029",
                 name: "AWS Solutions Architect Associate",
                 issuer: "Amazon Web Services"
             },
             cert2: {
-                name: "AWS Developer Associate",
-                issuer: "Amazon Web Services"
+                year: "2022 - 2025",
+                name: "EC-Council Certified Ethical Hacker",
+                issuer: "EC-Council"
             }
         },
         projects: {
