@@ -16,6 +16,7 @@ hugo-blog/resources/
 .DS_Store
 Thumbs.db
 desktop.ini
+*Zone.Identifier
 
 # ====================
 # 編輯器/IDE 相關

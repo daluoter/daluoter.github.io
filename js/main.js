@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            
+
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('active');
-            
+
             // Update ARIA attribute for accessibility
             hamburger.setAttribute('aria-expanded', !isExpanded);
         });
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             // Close mobile menu on click
             if (navLinks) {
                 navLinks.classList.remove('active');
@@ -53,12 +53,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Image Slider
+    const sliderImages = document.querySelectorAll('.slider-img');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentImg = 0;
+
+    if (sliderImages.length > 0) {
+        function showImage(index) {
+            sliderImages.forEach(img => img.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (sliderImages[index]) sliderImages[index].classList.add('active');
+            if (dots[index]) dots[index].classList.add('active');
+        }
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentImg = (currentImg - 1 + sliderImages.length) % sliderImages.length;
+                showImage(currentImg);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentImg = (currentImg + 1) % sliderImages.length;
+                showImage(currentImg);
+            });
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                currentImg = parseInt(e.target.getAttribute('data-index'));
+                showImage(currentImg);
+            });
+        });
+    }
 
     console.log("Portfolio Loaded - Future Tech Mode Activated");
 
     // Scroll Animation Observer - with reduced motion check
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+
     if (!prefersReducedMotion) {
         const observerOptions = {
             root: null,

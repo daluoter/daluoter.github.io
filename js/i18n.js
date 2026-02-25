@@ -14,20 +14,20 @@ const translations = {
         },
         hero: {
             greeting: "你好，我是",
-            title: "個人開發者 & 技術愛好者",
+            title: "開發工程師 & 技術愛好者",
             tagline: "以程式碼構建未來，一行一行創造可能。",
             resumeBtn: "下載履歷",
             contactBtn: "聯絡我"
         },
         about: {
             title: "01. 關於我",
-            p1: "這是一個關於我的簡介段落。我是誰、我擅長什麼、我正在尋找什麼樣的機會。",
-            p2: "我熱愛探索新技術，並致力於打造高效能、高互動性的網頁應用。"
+            p1: "具 4 年以上雲端與軟體系統開發經驗，專注於 AWS 架構設計、系統自動化與安全監控。",
+            p2: "擅長將既有系統遷移上雲並優化維運流程。"
         },
         experience: {
             title: "01. 工作經歷",
             job1: {
-                title: "DevOps 工程師",
+                title: "雲端開發工程師",
                 company: "國家資通安全研究院 (NICS)",
                 date: "2023 - 現在",
                 a1: "於 AWS 上開發雲端惡意電郵陷阱。",
@@ -36,7 +36,7 @@ const translations = {
                 a4: "協助撰寫管理會議報告。"
             },
             job2: {
-                title: "系統開發工程師",
+                title: "資安軟體工程師",
                 company: "國家資通安全會報技術服務中心 (NCCST)",
                 date: "2021 - 2023",
                 a1: "開發新版惡意電郵檢測系統。",
@@ -50,7 +50,7 @@ const translations = {
             school1: {
                 year: "2018 - 2020",
                 name: "國立台灣科技大學",
-                degree: "電機工程學系"
+                degree: "電機工程系 碩士"
             },
             school2: {
                 year: "2014 - 2018",
@@ -66,7 +66,7 @@ const translations = {
                 issuer: "Amazon Web Services"
             },
             cert2: {
-                year: "2022 - 2025",
+                year: "2023 - 2026",
                 name: "EC-Council Certified Ethical Hacker",
                 issuer: "EC-Council"
             }
@@ -116,7 +116,7 @@ const translations = {
             }
         },
         footer: {
-            credit: "由 Your Name 設計與開發"
+            credit: "由 黄英豪 (Oliver Huang) 設計與開發"
         }
     },
     en: {
@@ -139,13 +139,13 @@ const translations = {
         },
         about: {
             title: "01. About Me",
-            p1: "This is a brief introduction about me. Who I am, what I'm good at, and what opportunities I'm looking for.",
-            p2: "I love exploring new technologies and am dedicated to building high-performance, interactive web applications."
+            p1: "Over 4 years of experience in cloud and software system development, specializing in AWS architecture design, system automation, and security monitoring.",
+            p2: "Skilled in migrating existing systems to the cloud and optimizing operations workflows."
         },
         experience: {
             title: "01. Experience",
             job1: {
-                title: "DevOps Engineer",
+                title: "Cloud Development Engineer",
                 company: "National Institute of Cyber Security (NICS)",
                 date: "2023 - Present",
                 a1: "Developed cloud-based malicious email traps on AWS.",
@@ -154,7 +154,7 @@ const translations = {
                 a4: "Assisted in drafting management meeting reports."
             },
             job2: {
-                title: "System Development Engineer",
+                title: "Cybersecurity Software Engineer",
                 company: "National Center for Cyber Security Technology (NCCST)",
                 date: "2021 - 2023",
                 a1: "Developed a new version of the malicious email detection system.",
@@ -168,7 +168,7 @@ const translations = {
             school1: {
                 year: "2018 - 2020",
                 name: "National Taiwan University of Science and Technology",
-                degree: "Department of Electrical Engineering"
+                degree: "M.S. in Electrical Engineering"
             },
             school2: {
                 year: "2014 - 2018",
@@ -184,7 +184,7 @@ const translations = {
                 issuer: "Amazon Web Services"
             },
             cert2: {
-                year: "2022 - 2025",
+                year: "2023 - 2026",
                 name: "EC-Council Certified Ethical Hacker",
                 issuer: "EC-Council"
             }
@@ -234,7 +234,7 @@ const translations = {
             }
         },
         footer: {
-            credit: "Designed & Built by Your Name"
+            credit: "Designed & Built by Ying Hao Huang (Oliver)"
         }
     }
 };

@@ -8,7 +8,7 @@
     <meta name="description" content="個人作品集 - 開發者、設計師、技術愛好者。專注於打造高效能、高互動性的網頁應用。">
 
     <!-- SEO Meta Tags -->
-    <meta name="author" content="Your Name">
+    <meta name="author" content="黄英豪 (Oliver Huang)">
     <meta name="keywords" content="開發者, 網頁開發, 前端工程師, portfolio, developer, web developer">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://daluoter.github.io/">
@@ -89,14 +89,17 @@
                 <!-- Left: Text Content -->
                 <div class="hero-content">
                     <h2 class="greeting" data-i18n="hero.greeting">你好，我是</h2>
-                    <h1 class="name">Your Name</h1>
-                    <h3 class="title" data-i18n="hero.title">網頁開發者 & 技術愛好者</h3>
+                    <h1 class="name">
+                        <span class="name-zh">黄英豪</span><br>
+                        <span class="name-en">(Oliver Huang)</span>
+                    </h1>
+                    <h3 class="title" data-i18n="hero.title">開發工程師 & 技術愛好者</h3>
                     <p class="tagline" data-i18n="hero.tagline">以程式碼構建未來，一行一行創造可能。</p>
 
                     <!-- About Paragraphs Integrated -->
                     <div id="about" class="hero-about-text">
-                        <p data-i18n="about.p1">這是一個關於我的簡介段落。我是誰、我擅長什麼、我正在尋找什麼樣的機會。</p>
-                        <p data-i18n="about.p2">我熱愛探索新技術，並致力於打造高效能、高互動性的網頁應用。</p>
+                        <p data-i18n="about.p1">具 4 年以上雲端與軟體系統開發經驗，專注於 AWS 架構設計、系統自動化與安全監控。</p>
+                        <p data-i18n="about.p2">擅長將既有系統遷移上雲並優化維運流程。</p>
                     </div>
 
                     <div class="cta-buttons">
@@ -107,9 +110,25 @@
 
                 <!-- Right: Image -->
                 <div class="hero-image">
-                    <div class="img-wrapper">
-                        <img src="https://via.placeholder.com/400x400" alt="Your Name - 個人大頭照" loading="lazy"
-                            width="400" height="400">
+                    <div class="img-wrapper slider-container">
+                        <button class="slider-btn prev-btn" aria-label="Previous image"><i
+                                class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next-btn" aria-label="Next image"><i
+                                class="fas fa-chevron-right"></i></button>
+                        <div class="slider-images">
+                            <img src="profile.jpg" alt="黄英豪 - 個人大頭照 1" class="slider-img active" loading="lazy"
+                                width="400" height="400">
+                            <!-- 您可以在此處替換其他照片檔名 -->
+                            <img src="https://via.placeholder.com/400x400/112240/64ffda?text=Photo+2"
+                                alt="黄英豪 - 個人大頭照 2" class="slider-img" loading="lazy" width="400" height="400">
+                            <img src="https://via.placeholder.com/400x400/112240/64ffda?text=Photo+3"
+                                alt="黄英豪 - 個人大頭照 3" class="slider-img" loading="lazy" width="400" height="400">
+                        </div>
+                        <div class="slider-dots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                            <span class="dot" data-index="2"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,7 +144,7 @@
                 <!-- Experience Item 1 -->
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3 class="job-title" data-i18n="experience.job1.title">DevOps 工程師</h3>
+                        <h3 class="job-title" data-i18n="experience.job1.title">雲端開發工程師</h3>
                         <h4 class="company" data-i18n="experience.job1.company">國家資通安全研究院 (NICS)</h4>
                         <span class="date" data-i18n="experience.job1.date">2023 - 現在</span>
                         <ul class="achievements">
@@ -139,7 +158,7 @@
                 <!-- Experience Item 2 -->
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3 class="job-title" data-i18n="experience.job2.title">系統開發工程師</h3>
+                        <h3 class="job-title" data-i18n="experience.job2.title">資安軟體工程師</h3>
                         <h4 class="company" data-i18n="experience.job2.company">國家資通安全會報技術服務中心 (NCCST)</h4>
                         <span class="date" data-i18n="experience.job2.date">2021 - 2023</span>
                         <ul class="achievements">
@@ -165,7 +184,7 @@
                         <span class="edu-year" data-i18n="education.school1.year">2018 - 2020</span>
                     </div>
                     <h3 data-i18n="education.school1.name">國立台灣科技大學</h3>
-                    <p data-i18n="education.school1.degree">電機工程學系</p>
+                    <p data-i18n="education.school1.degree">電機工程系 碩士</p>
                     <div class="edu-bg-icon">
                         <i class="fas fa-university" aria-hidden="true"></i>
                     </div>
@@ -210,7 +229,7 @@
                     <div class="cert-content">
                         <h3 data-i18n="certifications.cert2.name">EC-Council Certified Ethical Hacker</h3>
                         <p data-i18n="certifications.cert2.issuer">EC-Council</p>
-                        <span class="cert-year" data-i18n="certifications.cert2.year">2022 - 2025</span>
+                        <span class="cert-year" data-i18n="certifications.cert2.year">2023 - 2026</span>
                     </div>
                     <div class="cert-link">
                         <i class="fas fa-external-link-alt" aria-hidden="true"></i>
@@ -275,20 +294,20 @@
                 <div class="skill-category">
                     <h3 data-i18n="skills.languages">程式語言</h3>
                     <div class="skill-list">
-                        <span class="skill-pill">JavaScript (ES6+)</span>
-                        <span class="skill-pill">TypeScript</span>
-                        <span class="skill-pill">Python</span>
-                        <span class="skill-pill">HTML5/CSS3</span>
+                        <span class="skill-pill">Python / FastAPI</span>
+                        <span class="skill-pill">JavaScript / TypeScript / React</span>
+                        <span class="skill-pill">PostgreSQL / MongoDB</span>
                     </div>
                 </div>
                 <div class="skill-category">
                     <h3 data-i18n="skills.frameworks">框架與工具</h3>
                     <div class="skill-list">
-                        <span class="skill-pill">React</span>
-                        <span class="skill-pill">Next.js</span>
-                        <span class="skill-pill">Tailwind CSS</span>
-                        <span class="skill-pill">Git</span>
-                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">Linux / VMware ESXi</span>
+                        <span class="skill-pill">Docker / Kubernetes</span>
+                        <span class="skill-pill">Git / GitHub Actions</span>
+                        <span class="skill-pill">AWS / Cloud Architecture</span>
+                        <span class="skill-pill">ELK Stack / Monitoring</span>
+                        <span class="skill-pill">AI Tools / Antigravity / OpenCode</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -344,15 +363,16 @@
                 <div class="contact-block">
                     <h3 class="contact-subtitle" data-i18n="contact.findMe">找到我</h3>
                     <div class="social-links-row">
-                        <a href="mailto:email@example.com" class="social-card" aria-label="Send email">
+                        <a href="mailto:daluoter@gmail.com" class="social-card" aria-label="Send email">
                             <i class="fas fa-envelope" aria-hidden="true"></i>
                             <span>Email</span>
                         </a>
-                        <a href="#" class="social-card" aria-label="Visit LinkedIn profile">
+                        <a href="https://linkedin.com/in/daluoter" class="social-card"
+                            aria-label="Visit LinkedIn profile">
                             <i class="fab fa-linkedin" aria-hidden="true"></i>
                             <span>LinkedIn</span>
                         </a>
-                        <a href="#" class="social-card" aria-label="Visit GitHub profile">
+                        <a href="https://github.com/daluoter" class="social-card" aria-label="Visit GitHub profile">
                             <i class="fab fa-github" aria-hidden="true"></i>
                             <span>GitHub</span>
                         </a>
@@ -391,7 +411,7 @@
     </main>
 
     <footer>
-        <p data-i18n="footer.credit">由 Your Name 設計與開發</p>
+        <p data-i18n="footer.credit">由 黄英豪 (Oliver Huang) 設計與開發</p>
     </footer>
 
     <!-- Scripts -->
