@@ -261,14 +261,54 @@ a:hover {
 
 .post-content p {
     margin-bottom: 20px;
-    color: var(--text-secondary);
+    color: #dde4ff;
 }
 
 .post-content ul,
 .post-content ol {
     margin: 20px 0;
     padding-left: 30px;
-    color: var(--text-secondary);
+    color: #dde4ff;
+}
+
+.post-content table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    margin: 40px 0;
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.post-content th,
+.post-content td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 24px !important;
+    text-align: left !important;
+    color: #dde4ff;
+}
+
+.post-content th:first-child,
+.post-content td:first-child {
+    width: 160px;
+    white-space: nowrap;
+}
+
+.post-content th {
+    background: rgba(0, 243, 255, 0.08);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.post-content tr:nth-of-type(even) {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.post-content tr:hover {
+    background: rgba(100, 255, 218, 0.03);
 }
 
 .post-content li {
@@ -285,7 +325,7 @@ a:hover {
     border-radius: 4px;
     font-size: 14px;
     color: var(--neon-blue);
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 .post-content pre {

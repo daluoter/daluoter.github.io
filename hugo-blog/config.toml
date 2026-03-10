@@ -10,7 +10,7 @@ theme = "techfolio"
 
 [params]
   description = "技術文章與個人筆記"
-  author = "Your Name"
+  author = "Oliver Huang"
   
 [languages]
   [languages.zh]

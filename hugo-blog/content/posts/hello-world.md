@@ -1,6 +1,6 @@
 ---
 title: "Hello World - 我的第一篇文章"
-date: 2024-12-27
+date: 2025-12-27
 draft: false
 description: "歡迎來到我的技術 Blog！這是第一篇測試文章。"
 tags: ["Hugo", "Blog", "入門"]

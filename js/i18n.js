@@ -100,6 +100,10 @@ const translations = {
             post1: {
                 title: "Hello World - 我的第一篇文章",
                 excerpt: "歡迎來到我的技術 Blog！這是第一篇測試文章。"
+            },
+            post2: {
+                title: "WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查",
+                excerpt: "記錄在 WSL 環境下因 BIOS 關閉 AES-NI 導致程式觸發 SIGILL 的排查過程。"
             }
         },
         contact: {
@@ -218,6 +222,10 @@ const translations = {
             post1: {
                 title: "Hello World - My First Post",
                 excerpt: "Welcome to my tech blog! This is the first test post."
+            },
+            post2: {
+                title: "WSL Missing AES CPU Flag Causes SIGILL: From Google Antigravity Crash to BIOS Settings Full Troubleshooting",
+                excerpt: "Troubleshooting a SIGILL crash caused by AES-NI being disabled in BIOS on WSL."
             }
         },
         contact: {
