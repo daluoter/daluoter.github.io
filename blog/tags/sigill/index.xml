@@ -1,19 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>SIGILL on Blog | 個人作品集</title>
-    <link>https://daluoter.github.io/blog/tags/sigill/</link>
-    <description>Recent content in SIGILL on Blog | 個人作品集</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <lastBuildDate>Tue, 10 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://daluoter.github.io/blog/tags/sigill/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查</title>
-      <link>https://daluoter.github.io/blog/posts/wsl-aes-cpu-flag-sigill/</link>
-      <pubDate>Tue, 10 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://daluoter.github.io/blog/posts/wsl-aes-cpu-flag-sigill/</guid>
-      <description>前言： 最近在 WSL (Windows Subsystem for Linux) 環境下執行 Google Antigravity 時，遇到了一個錯誤，導致無法和 Agent 進行對話：&#xA;Language server killed with signal SIGILL&#xA;Failed to start language server&#xA;同樣的 Workspace 在 Windows 環境下運行完全正常，但只要 Remote 到 WSL 就會崩潰。這篇文章記錄了 Debug 的完整排查過程。&#xA;環境資訊 為了方便對照，以下是我的測試環境：&#xA;Host 系統&#xA;Windows 11 Pro (Build 26200) CPU&#xA;Intel Core i7-12700 WSL 版本&#xA;2.6.3.0 (Kernel: 6.6.87.2) Linux 發行版&#xA;Ubuntu 22.04 / 24.04 (現象一致) 問題現象：SIGILL (Illegal Instruction) 當 Google Antigravity 啟動 Language Server 時，系統直接拋出 SIGILL。</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SIGILL on Blog | 個人作品集</title><link>https://daluoter.github.io/blog/tags/sigill/</link><description>Recent content in SIGILL on Blog | 個人作品集</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 10 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://daluoter.github.io/blog/tags/sigill/index.xml" rel="self" type="application/rss+xml"/><item><title>WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查</title><link>https://daluoter.github.io/blog/posts/wsl-aes-cpu-flag-sigill/</link><pubDate>Tue, 10 Mar 2026 00:00:00 +0000</pubDate><guid>https://daluoter.github.io/blog/posts/wsl-aes-cpu-flag-sigill/</guid><description>&lt;h3 id="前言"&gt;前言：&lt;/h3&gt;
+&lt;p&gt;最近在 WSL (Windows Subsystem for Linux) 環境下執行 &lt;strong&gt;Google Antigravity&lt;/strong&gt; 時，遇到了一個錯誤，導致無法和 Agent 進行對話：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Language server killed with signal SIGILL&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;Failed to start language server&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;同樣的 Workspace 在 Windows 環境下運行完全正常，但只要 Remote 到 WSL 就會崩潰。這篇文章記錄了 Debug 的完整排查過程。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="環境資訊"&gt;環境資訊&lt;/h2&gt;
+&lt;p&gt;為了方便對照，以下是我的測試環境：&lt;/p&gt;
+&lt;div style="background: rgba(17,34,64,0.6); border: 1px solid rgba(100,255,218,0.15); border-radius: 10px; padding: 28px 32px; margin: 30px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px;"&gt;
+ &lt;div&gt;
+ &lt;span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;"&gt;Host 系統&lt;/span&gt;&lt;br&gt;
+ &lt;span style="color: #e6f1ff; font-size: 16px;"&gt;Windows 11 Pro (Build 26200)&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div&gt;
+ &lt;span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;"&gt;CPU&lt;/span&gt;&lt;br&gt;
+ &lt;span style="color: #e6f1ff; font-size: 16px;"&gt;Intel Core i7-12700&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div&gt;
+ &lt;span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;"&gt;WSL 版本&lt;/span&gt;&lt;br&gt;
+ &lt;span style="color: #e6f1ff; font-size: 16px;"&gt;2.6.3.0 (Kernel: 6.6.87.2)&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div&gt;
+ &lt;span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;"&gt;Linux 發行版&lt;/span&gt;&lt;br&gt;
+ &lt;span style="color: #e6f1ff; font-size: 16px;"&gt;Ubuntu 22.04 / 24.04 (現象一致)&lt;/span&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="問題現象sigill-illegal-instruction"&gt;問題現象：SIGILL (Illegal Instruction)&lt;/h2&gt;
+&lt;p&gt;當 Google Antigravity 啟動 Language Server 時，系統直接拋出 &lt;code&gt;SIGILL&lt;/code&gt;。&lt;br&gt;
+在 Linux 中，這代表程式嘗試執行一個 &lt;strong&gt;CPU 硬體不支援或不允許的指令&lt;/strong&gt;。&lt;/p&gt;</description></item></channel></rss>
