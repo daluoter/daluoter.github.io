@@ -1,14 +1,202 @@
-<!doctype html><html lang=zh><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="記錄在 WSL 環境下執行程式時，遭遇語言伺服器因為缺少 AES CPU Flag 而發生 SIGILL 崩潰的排查過程與解決方法。"><title>WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查 | Blog | 個人作品集</title>
-<link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel=stylesheet><link rel=stylesheet href=https://daluoter.github.io/blog/css/style.css><meta property="og:title" content="WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查"><meta property="og:description" content="記錄在 WSL 環境下執行程式時，遭遇語言伺服器因為缺少 AES CPU Flag 而發生 SIGILL 崩潰的排查過程與解決方法。"><meta property="og:type" content="article"><meta property="og:url" content="https://daluoter.github.io/blog/posts/wsl-aes-cpu-flag-sigill/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-03-10T00:00:00+00:00"><meta property="article:modified_time" content="2026-03-10T00:00:00+00:00"></head><body><nav class=navbar><a href=https://daluoter.github.io/blog/../ class=logo>作品集</a><ul class=nav-links><li><a href=https://daluoter.github.io/blog/../>首頁</a></li><li><a href=https://daluoter.github.io/blog/ class=active>Blog</a></li><li><a href=https://daluoter.github.io/blog/../#projects>作品</a></li><li><a href=https://daluoter.github.io/blog/../#contact>聯絡</a></li></ul></nav><main class=main-content><article class=single-post><header class=post-header><div class=post-meta><time datetime=2026-03-10>2026-03-10</time>
-<span class=post-category>技術</span></div><h1 class=post-title>WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查</h1><p class=post-description>記錄在 WSL 環境下執行程式時，遭遇語言伺服器因為缺少 AES CPU Flag 而發生 SIGILL 崩潰的排查過程與解決方法。</p><div class=post-tags><span class=tag>WSL</span>
-<span class=tag>Linux</span>
-<span class=tag>Debug</span>
-<span class=tag>SIGILL</span></div></header><div class=post-content><h3 id=前言>前言：</h3><p>最近在 WSL (Windows Subsystem for Linux) 環境下執行 <strong>Google Antigravity</strong> 時，遇到了一個錯誤，導致無法和 Agent 進行對話：</p><blockquote><p><code>Language server killed with signal SIGILL</code><br><code>Failed to start language server</code></p></blockquote><p>同樣的 Workspace 在 Windows 環境下運行完全正常，但只要 Remote 到 WSL 就會崩潰。這篇文章記錄了 Debug 的完整排查過程。</p><hr><h2 id=環境資訊>環境資訊</h2><p>為了方便對照，以下是我的測試環境：</p><div style="background:rgba(17,34,64,.6);border:1px solid rgba(100,255,218,.15);border-radius:10px;padding:28px 32px;margin:30px 0;display:grid;grid-template-columns:1fr 1fr;gap:20px 40px"><div><span style=color:#64ffda;font-size:13px;text-transform:uppercase;letter-spacing:1px>Host 系統</span><br><span style=color:#e6f1ff;font-size:16px>Windows 11 Pro (Build 26200)</span></div><div><span style=color:#64ffda;font-size:13px;text-transform:uppercase;letter-spacing:1px>CPU</span><br><span style=color:#e6f1ff;font-size:16px>Intel Core i7-12700</span></div><div><span style=color:#64ffda;font-size:13px;text-transform:uppercase;letter-spacing:1px>WSL 版本</span><br><span style=color:#e6f1ff;font-size:16px>2.6.3.0 (Kernel: 6.6.87.2)</span></div><div><span style=color:#64ffda;font-size:13px;text-transform:uppercase;letter-spacing:1px>Linux 發行版</span><br><span style=color:#e6f1ff;font-size:16px>Ubuntu 22.04 / 24.04 (現象一致)</span></div></div><hr><h2 id=問題現象sigill-illegal-instruction>問題現象：SIGILL (Illegal Instruction)</h2><p>當 Google Antigravity 啟動 Language Server 時，系統直接拋出 <code>SIGILL</code>。<br>在 Linux 中，這代表程式嘗試執行一個 <strong>CPU 硬體不支援或不允許的指令</strong>。</p><h3 id=第一步檢查-cpu-指令集>第一步：檢查 CPU 指令集</h3><p>我一開始懷疑是 WSL 沒抓到正確的指令集。在 WSL 中執行檢查：</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>grep -m1 -o <span style=color:#f1fa8c>&#39;aes&#39;</span> /proc/cpuinfo <span style=color:#ff79c6>||</span> <span style=color:#8be9fd;font-style:italic>echo</span> <span style=color:#f1fa8c>&#34;NO_AES&#34;</span>
-</span></span></code></pre></td></tr></table></div></div><p>結果： <code>NO_AES</code></p><p>再查看完整的 flags：</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>grep -m1 <span style=color:#f1fa8c>&#39;^flags&#39;</span> /proc/cpuinfo
-</span></span></code></pre></td></tr></table></div></div><p>輸出範例： <code>fpu vme de ... pclmulqdq ... avx avx2 sha_ni ...</code></p><p>奇怪的是，AVX、AVX2、SHA 都在，唯獨 <code>aes</code> 消失了。</p><h2 id=排查過程那些我走過的彎路>排查過程：(那些我走過的彎路)</h2><h3 id=1-懷疑-hyper-v-與-vbs-的衝突>1. 懷疑 Hyper-V 與 VBS 的衝突</h3><p>由於 WSL2 運作在輕量化 Hyper-V 之上，我懷疑是 Windows 的「虛擬化安全性 (VBS)」過濾掉了部分指令集。</p><ul><li>檢查 <code>systeminfo</code>，確認「虛擬化型安全性」為執行中。</li><li>嘗試關閉 Hypervisor：<code>bcdedit /set hypervisorlaunchtype off</code>。</li><li>結果 WSL 直接無法啟動（報錯 <code>HCS_E_HYPERV_NOT_INSTALLED</code>），因為 WSL2 必須依賴 Hyper-V。</li></ul><h3 id=2-跨機對照實驗>2. 跨機對照實驗</h3><p>為了確認是硬體還是軟體問題，我找了另一台同樣搭載 i7-12700 同樣 WSL 版本的主機測試。</p><ul><li>實驗主機 WSL： <code>grep aes /proc/cpuinfo</code> 成功偵測到 <code>aes</code>。</li><li>結論： 這排除了 Windows Build 或 WSL 版本的通用 Bug，問題限縮在「這台特定機器」的硬體設定。</li></ul><hr><h2 id=真正的根因bios-中的硬體開關>真正的根因：BIOS 中的硬體開關</h2><p>最後發現，問題的核心不在 OS 層級，而在硬體抽象層的最前端：BIOS/UEFI。</p><p>在 BIOS 設定中，有一個關鍵選項：</p><ul><li>路徑： <code>Advanced</code> → <code>CPU Configuration</code></li><li>選項名稱： <code>Intel AES-NI</code> 或 <code>AES Instructions</code></li></ul><p>這個選項在問題機器上被設定為 <strong>Disabled</strong>。</p><h3 id=為什麼-bios-會影響-wsl>為什麼 BIOS 會影響 WSL？</h3><p>CPU 特性的傳遞鏈如下：</p><ol><li><strong>CPU 硬體</strong>：支援 AES。</li><li><strong>BIOS</strong>：決定是否暴露該 CPUID 給作業系統。</li><li><strong>Windows</strong>：獲取 CPUID 資訊。</li><li><strong>Hyper-V</strong>：將指令集透傳 (Passthrough) 給 WSL。</li></ol><p>如果第一關 BIOS 就把 AES 鎖住，後續所有的層級都會認為這顆 CPU 不支援硬體加密加速。</p><hr><h2 id=解決方案與驗證>解決方案與驗證</h2><h3 id=1-修改-bios>1. 修改 BIOS</h3><p>重啟進 BIOS，將 <code>Intel AES-NI</code> 更改為 <strong>Enabled</strong>。</p><h3 id=2-進入-wsl-驗證>2. 進入 WSL 驗證</h3><p>再次執行檢查命令：</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>grep -m1 -o <span style=color:#f1fa8c>&#39;aes&#39;</span> /proc/cpuinfo
-</span></span></code></pre></td></tr></table></div></div><p>結果： <code>aes</code> 成功出現！</p><h3 id=3-最終測試>3. 最終測試</h3><p>重新啟動 Google Antigravity 服務並且 Remote 到 WSL，服務恢復正常。</p><hr><h2 id=總結為什麼會發生-sigill>總結：為什麼會發生 SIGILL？</h2><p>現代許多高效能程式（尤其是 Language Servers 或加密工具）在編譯時會預設 CPU 支援 AES-NI。</p><ul><li><strong>Windows 程式</strong>：通常會先檢查 CPUID，若不支援則 Fallback 到軟體模擬（性能較慢，但不會崩潰）。</li><li><strong>Linux Native Binary</strong>：部分程式為了追求極致性能，會假設環境具備基礎指令集（如 AES），若環境不支援且程式未做 Fallback 檢查，就會直接觸發 <code>SIGILL</code> 崩潰。</li></ul><p><strong>結論：</strong>
-問題的核心原因在於 BIOS 中 <strong>Intel AES-NI</strong> 指令集預設為關閉，導致 WSL 虛擬機無法獲取 <code>aes</code> CPU flag，進而導致現代程式（如 Google Antigravity）在執行加密相關指令時觸發非法指令 (<code>SIGILL</code>)。</p><p><strong>核心教訓：</strong>
-當 WSL 遇到不明原因的 <code>SIGILL</code> 時，別急著重裝 WSL Distro。先用 <code>lscpu</code> 或 <code>grep /proc/cpuinfo</code> 檢查指令集，並記得回頭看看 BIOS 設定是否正確。</p></div><footer class=post-footer><a href=https://daluoter.github.io/blog/ class=back-link>← 返回文章列表</a></footer></article></main><footer><p>由 Oliver Huang 設計與開發</p></footer></body></html>
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="記錄在 WSL 環境下執行程式時，遭遇語言伺服器因為缺少 AES CPU Flag 而發生 SIGILL 崩潰的排查過程與解決方法。">
+    <title>WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查 | Blog | 個人作品集</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://daluoter.github.io/blog/css/style.css">
+
+    
+    <meta property="og:title" content="WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查" />
+<meta property="og:description" content="記錄在 WSL 環境下執行程式時，遭遇語言伺服器因為缺少 AES CPU Flag 而發生 SIGILL 崩潰的排查過程與解決方法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://daluoter.github.io/blog/posts/wsl-aes-cpu-flag-sigill/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-03-10T00:00:00+00:00" />
+
+
+</head>
+
+<body>
+    
+    <nav class="navbar">
+        <a href="https://daluoter.github.io/blog/../" class="logo">作品集</a>
+        <ul class="nav-links">
+            <li><a href="https://daluoter.github.io/blog/../">首頁</a></li>
+            <li><a href="https://daluoter.github.io/blog/" class="active">Blog</a></li>
+            <li><a href="https://daluoter.github.io/blog/../#projects">作品</a></li>
+            <li><a href="https://daluoter.github.io/blog/../#contact">聯絡</a></li>
+        </ul>
+    </nav>
+
+    
+    <main class="main-content">
+        
+<article class="single-post">
+    <header class="post-header">
+        <div class="post-meta">
+            <time datetime=" 2026-03-10">2026-03-10</time>
+            
+            <span class="post-category">技術</span>
+            
+        </div>
+        <h1 class="post-title">WSL 缺少 AES CPU Flag 導致 SIGILL：從 Google Antigravity 崩潰到 BIOS 設定的完整排查</h1>
+        
+        <p class="post-description">記錄在 WSL 環境下執行程式時，遭遇語言伺服器因為缺少 AES CPU Flag 而發生 SIGILL 崩潰的排查過程與解決方法。</p>
+        
+        <div class="post-tags">
+            
+            <span class="tag">WSL</span>
+            
+            <span class="tag">Linux</span>
+            
+            <span class="tag">Debug</span>
+            
+            <span class="tag">SIGILL</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+        <h3 id="前言">前言：</h3>
+<p>最近在 WSL (Windows Subsystem for Linux) 環境下執行 <strong>Google Antigravity</strong> 時，遇到了一個錯誤，導致無法和 Agent 進行對話：</p>
+<blockquote>
+<p><code>Language server killed with signal SIGILL</code><br>
+<code>Failed to start language server</code></p>
+</blockquote>
+<p>同樣的 Workspace 在 Windows 環境下運行完全正常，但只要 Remote 到 WSL 就會崩潰。這篇文章記錄了 Debug 的完整排查過程。</p>
+<hr>
+<h2 id="環境資訊">環境資訊</h2>
+<p>為了方便對照，以下是我的測試環境：</p>
+<div style="background: rgba(17,34,64,0.6); border: 1px solid rgba(100,255,218,0.15); border-radius: 10px; padding: 28px 32px; margin: 30px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px;">
+  <div>
+    <span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Host 系統</span><br>
+    <span style="color: #e6f1ff; font-size: 16px;">Windows 11 Pro (Build 26200)</span>
+  </div>
+  <div>
+    <span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">CPU</span><br>
+    <span style="color: #e6f1ff; font-size: 16px;">Intel Core i7-12700</span>
+  </div>
+  <div>
+    <span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">WSL 版本</span><br>
+    <span style="color: #e6f1ff; font-size: 16px;">2.6.3.0 (Kernel: 6.6.87.2)</span>
+  </div>
+  <div>
+    <span style="color: #64ffda; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Linux 發行版</span><br>
+    <span style="color: #e6f1ff; font-size: 16px;">Ubuntu 22.04 / 24.04 (現象一致)</span>
+  </div>
+</div>
+<hr>
+<h2 id="問題現象sigill-illegal-instruction">問題現象：SIGILL (Illegal Instruction)</h2>
+<p>當 Google Antigravity 啟動 Language Server 時，系統直接拋出 <code>SIGILL</code>。<br>
+在 Linux 中，這代表程式嘗試執行一個 <strong>CPU 硬體不支援或不允許的指令</strong>。</p>
+<h3 id="第一步檢查-cpu-指令集">第一步：檢查 CPU 指令集</h3>
+<p>我一開始懷疑是 WSL 沒抓到正確的指令集。在 WSL 中執行檢查：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -m1 -o <span style="color:#f1fa8c">&#39;aes&#39;</span> /proc/cpuinfo <span style="color:#ff79c6">||</span> <span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;NO_AES&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>結果： <code>NO_AES</code></p>
+<p>再查看完整的 flags：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -m1 <span style="color:#f1fa8c">&#39;^flags&#39;</span> /proc/cpuinfo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>輸出範例： <code>fpu vme de ... pclmulqdq ... avx avx2 sha_ni ...</code></p>
+<p>奇怪的是，AVX、AVX2、SHA 都在，唯獨 <code>aes</code> 消失了。</p>
+<h2 id="排查過程那些我走過的彎路">排查過程：(那些我走過的彎路)</h2>
+<h3 id="1-懷疑-hyper-v-與-vbs-的衝突">1. 懷疑 Hyper-V 與 VBS 的衝突</h3>
+<p>由於 WSL2 運作在輕量化 Hyper-V 之上，我懷疑是 Windows 的「虛擬化安全性 (VBS)」過濾掉了部分指令集。</p>
+<ul>
+<li>檢查 <code>systeminfo</code>，確認「虛擬化型安全性」為執行中。</li>
+<li>嘗試關閉 Hypervisor：<code>bcdedit /set hypervisorlaunchtype off</code>。</li>
+<li>結果 WSL 直接無法啟動（報錯 <code>HCS_E_HYPERV_NOT_INSTALLED</code>），因為 WSL2 必須依賴 Hyper-V。</li>
+</ul>
+<h3 id="2-跨機對照實驗">2. 跨機對照實驗</h3>
+<p>為了確認是硬體還是軟體問題，我找了另一台同樣搭載 i7-12700 同樣 WSL 版本的主機測試。</p>
+<ul>
+<li>實驗主機 WSL： <code>grep aes /proc/cpuinfo</code> 成功偵測到 <code>aes</code>。</li>
+<li>結論： 這排除了 Windows Build 或 WSL 版本的通用 Bug，問題限縮在「這台特定機器」的硬體設定。</li>
+</ul>
+<hr>
+<h2 id="真正的根因bios-中的硬體開關">真正的根因：BIOS 中的硬體開關</h2>
+<p>最後發現，問題的核心不在 OS 層級，而在硬體抽象層的最前端：BIOS/UEFI。</p>
+<p>在 BIOS 設定中，有一個關鍵選項：</p>
+<ul>
+<li>路徑： <code>Advanced</code> → <code>CPU Configuration</code></li>
+<li>選項名稱： <code>Intel AES-NI</code> 或 <code>AES Instructions</code></li>
+</ul>
+<p>這個選項在問題機器上被設定為 <strong>Disabled</strong>。</p>
+<h3 id="為什麼-bios-會影響-wsl">為什麼 BIOS 會影響 WSL？</h3>
+<p>CPU 特性的傳遞鏈如下：</p>
+<ol>
+<li><strong>CPU 硬體</strong>：支援 AES。</li>
+<li><strong>BIOS</strong>：決定是否暴露該 CPUID 給作業系統。</li>
+<li><strong>Windows</strong>：獲取 CPUID 資訊。</li>
+<li><strong>Hyper-V</strong>：將指令集透傳 (Passthrough) 給 WSL。</li>
+</ol>
+<p>如果第一關 BIOS 就把 AES 鎖住，後續所有的層級都會認為這顆 CPU 不支援硬體加密加速。</p>
+<hr>
+<h2 id="解決方案與驗證">解決方案與驗證</h2>
+<h3 id="1-修改-bios">1. 修改 BIOS</h3>
+<p>重啟進 BIOS，將 <code>Intel AES-NI</code> 更改為 <strong>Enabled</strong>。</p>
+<h3 id="2-進入-wsl-驗證">2. 進入 WSL 驗證</h3>
+<p>再次執行檢查命令：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -m1 -o <span style="color:#f1fa8c">&#39;aes&#39;</span> /proc/cpuinfo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>結果： <code>aes</code> 成功出現！</p>
+<h3 id="3-最終測試">3. 最終測試</h3>
+<p>重新啟動 Google Antigravity 服務並且 Remote 到 WSL，服務恢復正常。</p>
+<hr>
+<h2 id="總結為什麼會發生-sigill">總結：為什麼會發生 SIGILL？</h2>
+<p>現代許多高效能程式（尤其是 Language Servers 或加密工具）在編譯時會預設 CPU 支援 AES-NI。</p>
+<ul>
+<li><strong>Windows 程式</strong>：通常會先檢查 CPUID，若不支援則 Fallback 到軟體模擬（性能較慢，但不會崩潰）。</li>
+<li><strong>Linux Native Binary</strong>：部分程式為了追求極致性能，會假設環境具備基礎指令集（如 AES），若環境不支援且程式未做 Fallback 檢查，就會直接觸發 <code>SIGILL</code> 崩潰。</li>
+</ul>
+<p><strong>結論：</strong>
+問題的核心原因在於 BIOS 中 <strong>Intel AES-NI</strong> 指令集預設為關閉，導致 WSL 虛擬機無法獲取 <code>aes</code> CPU flag，進而導致現代程式（如 Google Antigravity）在執行加密相關指令時觸發非法指令 (<code>SIGILL</code>)。</p>
+<p><strong>核心教訓：</strong>
+當 WSL 遇到不明原因的 <code>SIGILL</code> 時，別急著重裝 WSL Distro。先用 <code>lscpu</code> 或 <code>grep /proc/cpuinfo</code> 檢查指令集，並記得回頭看看 BIOS 設定是否正確。</p>
+
+    </div>
+
+    <footer class="post-footer">
+        <a href="https://daluoter.github.io/blog/" class="back-link">← 返回文章列表</a>
+    </footer>
+</article>
+
+    </main>
+
+    
+    <footer>
+        <p>由 Oliver Huang 設計與開發</p>
+    </footer>
+</body>
+
+</html>
