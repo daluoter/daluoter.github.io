@@ -325,8 +325,24 @@
             <h2 class="section-title" data-i18n="blog.title">06. 技術文章</h2>
             <p class="section-intro" data-i18n="blog.intro">分享技術心得、學習筆記與開發經驗。</p>
 
-            <div class="blog-preview">
+                        <div class="blog-carousel" aria-label="Blog post carousel">
+                <button class="blog-carousel-btn blog-carousel-prev" type="button" aria-label="Previous posts">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <div class="blog-carousel-viewport">
+<div class="blog-preview">
                 <!-- Blog posts will be dynamically loaded or manually updated -->
+                <article class="blog-card">
+                    <div class="blog-card-meta">
+                        <time>2026-03-12</time>
+                        <span class="blog-card-category">技術</span>
+                    </div>
+                    <h3 class="blog-card-title">
+                        <a href="blog/posts/aws-saa-c03-exam-record-2026/aws-saa-backup/">AWS SAA-C03 考照心得：2026 準備重點與考後記錄</a>
+                    </h3>
+                    <p class="blog-card-excerpt">整理 AWS SAA-C03 的準備方式、練習策略與實際考試心得，作為雲端證照學習筆記。</p>
+                    <a href="blog/posts/aws-saa-c03-exam-record-2026/aws-saa-backup/" class="blog-card-link" data-i18n="blog.readMore">閱讀更多 →</a>
+                </article>
                 <article class="blog-card">
                     <div class="blog-card-meta">
                         <time>2026-03-10</time>
@@ -353,6 +369,11 @@
                     <p class="blog-card-excerpt" data-i18n="blog.post1.excerpt">歡迎來到我的技術 Blog！這是第一篇測試文章。</p>
                     <a href="blog/posts/hello-world/" class="blog-card-link" data-i18n="blog.readMore">閱讀更多 →</a>
                 </article>
+            </div>
+                </div>
+                <button class="blog-carousel-btn blog-carousel-next" type="button" aria-label="Next posts">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
             </div>
 
             <div class="blog-cta">

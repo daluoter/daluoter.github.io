@@ -88,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    initBlogPostCarousel();
+
     console.log("Portfolio Loaded - Future Tech Mode Activated");
 
     // Scroll Animation Observer - with reduced motion check
@@ -122,3 +124,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function initBlogPostCarousel() {
+    const carousel = document.querySelector('#blog .blog-carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.blog-preview');
+    const cards = Array.from(track.querySelectorAll('.blog-card'));
+    const prevBtn = carousel.querySelector('.blog-carousel-prev');
+    const nextBtn = carousel.querySelector('.blog-carousel-next');
+
+    if (!track || cards.length === 0 || !prevBtn || !nextBtn) return;
+
+    let currentIndex = 0;
+    const visibleCount = () => (window.innerWidth <= 900 ? 1 : 2);
+
+    const updatePosition = () => {
+        const target = cards[Math.min(currentIndex, cards.length - 1)];
+        track.style.transform = `translateX(-${target ? target.offsetLeft : 0}px)`;
+    };
+
+    const updateButtons = () => {
+        const canSlide = cards.length > visibleCount();
+        prevBtn.disabled = !canSlide;
+        nextBtn.disabled = !canSlide;
+
+        if (!canSlide) {
+            currentIndex = 0;
+            track.style.transform = 'translateX(0)';
+        }
+    };
+
+    const move = (step) => {
+        if (cards.length <= visibleCount()) return;
+        currentIndex = (currentIndex + step + cards.length) % cards.length;
+        updatePosition();
+    };
+
+    prevBtn.addEventListener('click', () => move(-1));
+    nextBtn.addEventListener('click', () => move(1));
+
+    window.addEventListener('resize', () => {
+        updateButtons();
+        updatePosition();
+    });
+
+    updateButtons();
+    updatePosition();
+}
