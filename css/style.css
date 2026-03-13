@@ -1258,12 +1258,14 @@ ul {
     text-decoration-thickness: 2px;
 }
 
-/* Placeholder card style */
-.blog-card-placeholder {
-    border-style: dashed;
-    border-width: 2px;
-    background: rgba(17, 34, 64, 0.3);
+
+.blog-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
+
 
 
 @media (max-width: 900px) {
