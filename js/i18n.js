@@ -275,6 +275,12 @@ function applyTranslations(lang) {
 
     // Update html lang attribute
     document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+
+    // Update resume download link based on language
+    const resumeBtn = document.getElementById('resumeDownloadBtn');
+    if (resumeBtn) {
+        resumeBtn.href = lang === 'zh' ? 'resume-zh.pdf' : 'resume-en.pdf';
+    }
 }
 
 // Initialize i18n

@@ -43,3 +43,9 @@ desktop.ini
 # ====================
 node_modules/
 npm-debug.log*
+
+# Resume source files (keep local only)
+resume-zh.pen
+resume-zh.html
+resume-en.pen
+resume-en.html
