@@ -27,18 +27,27 @@ const translations = {
         experience: {
             title: "01. 工作經歷",
             job1: {
+                title: "資深系統工程師",
+                company: "萬海航運 (WHL)",
+                date: "2026.07 - 現在",
+                a1: "機房及伺服器管理(Superdome, File Server, Oracle Server及其他主機)",
+                a2: "廣域網路/區域網路管理(Firewall, DNS, Proxy)",
+                a3: "Exchange 電子郵件系統管理",
+                a4: "系統權限安全控管"
+            },
+            job2: {
                 title: "雲端開發工程師",
                 company: "國家資通安全研究院 (NICS)",
-                date: "2023 - 現在",
+                date: "2023.01 - 2026.07",
                 a1: "於 AWS 上開發雲端惡意電郵陷阱。",
                 a2: "將現有惡意電郵檢測系統遷移至 AWS。",
                 a3: "維運既有 22 間機關地端惡意電郵檢測系統。",
                 a4: "協助撰寫管理會議報告。"
             },
-            job2: {
+            job3: {
                 title: "資安軟體工程師",
                 company: "國家資通安全會報技術服務中心 (NCCST)",
-                date: "2021 - 2023",
+                date: "2021.04 - 2022.12",
                 a1: "開發新版惡意電郵檢測系統。",
                 a2: "佈署惡意電郵檢測系統至 4 間政府機關。",
                 a3: "協助分析惡意電郵來源。",
@@ -149,18 +158,27 @@ const translations = {
         experience: {
             title: "01. Experience",
             job1: {
+                title: "Senior System Engineer",
+                company: "Wan Hai Lines (WHL)",
+                date: "2026.07 - Present",
+                a1: "Data center and server management (Superdome, File Server, Oracle Server, and other hosts).",
+                a2: "WAN/LAN management (Firewall, DNS, Proxy).",
+                a3: "Exchange email system administration.",
+                a4: "System permission and security control."
+            },
+            job2: {
                 title: "Cloud Development Engineer",
                 company: "National Institute of Cyber Security (NICS)",
-                date: "2023 - Present",
+                date: "2023.01 - 2026.07",
                 a1: "Developed cloud-based malicious email traps on AWS.",
                 a2: "Migrated existing malicious email detection systems to AWS.",
                 a3: "Maintained on-premises malicious email detection systems for 22 agencies.",
                 a4: "Assisted in drafting management meeting reports."
             },
-            job2: {
+            job3: {
                 title: "Cybersecurity Software Engineer",
                 company: "National Center for Cyber Security Technology (NCCST)",
-                date: "2021 - 2023",
+                date: "2021.04 - 2022.12",
                 a1: "Developed a new version of the malicious email detection system.",
                 a2: "Deployed the malicious email detection system to 4 government agencies.",
                 a3: "Assisted in analyzing sources of malicious emails.",
