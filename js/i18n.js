@@ -106,6 +106,10 @@ const translations = {
             readMore: "閱讀更多 →",
             viewAll: "查看所有文章 →",
             moreComing: "更多文章即將推出...",
+            post3: {
+                title: "Pi Agent 對話同步方式",
+                excerpt: "記錄我如何用 Google Drive、rclone 與 pi-cloud，在家用電腦、公司電腦及 Codespaces 之間延續 Pi 對話，以及 session 路徑、同步衝突和 OAuth 授權過期的排查經驗。"
+            },
             post1: {
                 title: "Hello World - 我的第一篇文章",
                 excerpt: "歡迎來到我的技術 Blog！這是第一篇測試文章。"
@@ -237,6 +241,10 @@ const translations = {
             readMore: "Read more →",
             viewAll: "View all posts →",
             moreComing: "More posts coming soon...",
+            post3: {
+                title: "Syncing Pi Agent Conversations",
+                excerpt: "How I use Google Drive, rclone, and pi-cloud to continue Pi conversations across home and work computers and Codespaces, with troubleshooting notes on session paths, sync conflicts, and expired OAuth authorization."
+            },
             post1: {
                 title: "Hello World - My First Post",
                 excerpt: "Welcome to my tech blog! This is the first test post."
